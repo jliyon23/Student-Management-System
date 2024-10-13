@@ -18,6 +18,7 @@ const AdminLogin = () => {
         password,
       }, { withCredentials: true });
       console.log(response.data);
+      setErr("");
       setRole("admin");
       Navigate("/dashboard");
     } catch (error) {
@@ -34,7 +35,7 @@ const AdminLogin = () => {
       <div className="w-full h-screen flex justify-center items-center">
         <form className="w-full mx-3 border-teal-400 md:w-1/3 px-5 py-5 bg-zinc-800 rounded-sm text-white shadow-lg flex flex-col justify-center items-center">
           <h1>Admin Login</h1>
-          <p>{err }</p>
+          <p>{err}</p>
           <input
             type="text"
             onChange={(e) => setUsername(e.target.value)}
