@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [err, setErr] = useState("");
   const Navigate = useNavigate();
   const { setRole } = useContext(UserContext);
 
@@ -19,8 +20,12 @@ const AdminLogin = () => {
       console.log(response.data);
       setRole("admin");
       Navigate("/dashboard");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      if (error.response && error.response.data) {
+      setErr(error.response.data.message || "An error occurred");
+    } else {
+      setErr("An unexpected error occurred");
+      }
     }
   };
 
@@ -29,6 +34,7 @@ const AdminLogin = () => {
       <div className="w-full h-screen flex justify-center items-center">
         <form className="w-full mx-3 border-teal-400 md:w-1/3 px-5 py-5 bg-zinc-800 rounded-sm text-white shadow-lg flex flex-col justify-center items-center">
           <h1>Admin Login</h1>
+          <p>{err }</p>
           <input
             type="text"
             onChange={(e) => setUsername(e.target.value)}
