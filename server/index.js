@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({
-  origin: "https://sms-dbms-project.vercel.app/",
+  origin: ["https://sms-dbms-project.vercel.app"],
   credentials: true,
 }));
 
